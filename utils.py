@@ -111,20 +111,6 @@ def process_notice_template(notice: str, action: Action) -> str:
     return notice
 
 
-def compile_action_data(yaml_data: dict) -> Action:
-    action = Action(
-        code        = yaml_data['code'],
-        start_date  = convert_date(yaml_data['start']),
-        end_date    = convert_date(yaml_data['end']),
-        employee    = Formatting.name(yaml_data['employee']),
-        supervisor  = Formatting.name(yaml_data['supervisor']),
-        org         = match_org(yaml_data['org']),
-    )
-    if not isinstance(action.code,int) and ' ' in action.code:
-        action.code = int(action.code.split()[0])
-    return action
-
-
 def get_yaml_data(file_path: str) -> Action | list[Action]:
     with open(file_path) as file:
         yaml_data: dict = yaml.safe_load(file)
@@ -138,6 +124,7 @@ def get_yaml_data(file_path: str) -> Action | list[Action]:
         supervisor  = Formatting.name(yaml_data['supervisor']),
         org         = match_org(yaml_data['org']),
     )
+    action.end_date = CURRENT_FY_END_DATE if not action.end_date else convert_date(action.end_date)
     if not isinstance(action.code,int) and ' ' in action.code:
         action.code = int(action.code.split()[0])
     return action
