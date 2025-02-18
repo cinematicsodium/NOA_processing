@@ -1,15 +1,17 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class Action:
-    code: int
-    start_date: str
-    employee: str
-    end_date: str
-    supervisor: str
+    noa_code_int: int
     org: str
-    deadline: str = ''
-    consultant: str = ''
-    liaison: str = ''
-    noa: str = ''
-    plan_type: str = ''
+    employee: str
+    supervisor: str
+    start_date: str
+    end_date: str
+    direct_reports: str = ""
+    liaison: str = ""
+    noa_description: str = ""
+    consultant: str = ""
+    plan_type: str = ""
+    deadline: str = ""
