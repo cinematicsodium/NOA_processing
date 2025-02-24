@@ -5,11 +5,11 @@ LINK: str
 
 HEADER: str
 
-TEMP_POSITION: str
+TEMP_POSITION_TEXT: str
 
-BOTH_THE_EMPLOYEE: str
+NOTICE_BODY: str
 
-PAST_DUE: str
+PAST_DUE_TEXT: str
 
 PERFORMANCE_PLAN: str
 
@@ -24,10 +24,10 @@ class Notice:
 def create_notice(is_late: bool, is_temporary: bool) -> str:
     base_components = [HEADER]
     if is_temporary:
-        base_components.append(TEMP_POSITION)
-    base_components.append(BOTH_THE_EMPLOYEE)
+        base_components.append(TEMP_POSITION_TEXT)
+    base_components.append(NOTICE_BODY)
     if is_late:
-        base_components.append(PAST_DUE)
+        base_components.append(PAST_DUE_TEXT)
     base_components.extend([PERFORMANCE_PLAN, FOOTER])
     return "".join(base_components)
 
